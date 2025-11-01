@@ -10,7 +10,7 @@ typedef struct {
 } Vector;
 
 Vector* vectorCreate();
-void vectorPush(Vector* vec, void* item);
+void vectorPushBack(Vector* vec, void* item);
 void* vectorGet(Vector* vec, size_t index);
 void* vectorPopBack(Vector* vec);
 size_t vectorSize(Vector* vec);

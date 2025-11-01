@@ -11,7 +11,7 @@ Vector* vectorCreate() {
     return vec;
 }
 
-void vectorPush(Vector* vec, void* item) {
+void vectorPushBack(Vector* vec, void* item) {
     if (vec -> size == vec -> capacity) {
         vec -> capacity *= 2;
         vec -> data = realloc(vec -> data, vec -> capacity * sizeof(void* ));
