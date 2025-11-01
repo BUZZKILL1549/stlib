@@ -1,7 +1,7 @@
 CC = clang
 AR = llvm-ar
 CFLAGS = -Wall -Wextra -Iinclude
-SRC = src/vector.c src/hashtable.c
+SRC = src/vector.c src/hashtable.c src/linkedlist.c
 OBJ = $(SRC:.c=.o)
 LIB = libstlib.a
 
@@ -18,4 +18,4 @@ src/%.o: src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	$(RM) src\\vector.o libstlib.a 2>nul || true
+	$(RM) src\\vector.o src\\hashtable.o src\\linkedlist.o libstlib.a 2>nul || true
