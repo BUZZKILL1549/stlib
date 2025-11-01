@@ -23,7 +23,37 @@ void* vectorGet(Vector* vec, size_t index) {
     return (index < vec -> size) ? vec -> data[index] : NULL;
 }
 
-void vectorFree(Vector* vec) {
+void* vectorPopBack(Vector* vec) {
+    if (vec -> size == 0) {
+        return NULL;
+    }
+
+    void* item = vec -> data[vec -> size - 1];
+    vec -> size--;
+    return item;
+}
+
+size_t vectorSize(Vector* vec) {
+    return vec -> size;
+}
+
+void vectorRemove(Vector* vec, size_t index) {
+    if (index >= vec -> size) {
+        return;
+    }
+
+    for (size_t i = index; i < vec -> size - 1; i++) {
+        vec -> data[i] = vec -> data[i + 1];
+    }
+
+    vec -> size--;
+}
+
+void vectorDestroy(Vector* vec) {
+    if (!vec) {
+        return;
+    }
+
     free(vec -> data);
     free(vec);
 }
