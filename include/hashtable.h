@@ -19,6 +19,8 @@ HashTable* hashTableCreate(size_t capacity);
 void hashTableDestroy(HashTable* table);
 void hashTableInsert(HashTable* table, const char* key, void* value);
 void* hashTableGet(HashTable* table, const char* key);
+int hashTableContains(HashTable* table, const char* key);
+size_t hashTableSize(HashTable* table);
 void hashTableRemove(HashTable* table, const char* key);
 
 #endif

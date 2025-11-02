@@ -58,6 +58,15 @@ void* hashTableGet(HashTable* table, const char* key) {
     return NULL;
 }
 
+int hashTableContains(HashTable* table, const char* key) {
+    return hashTableGet(table, key) != NULL;
+}
+
+size_t hashTableSize(HashTable* table) {
+    return table -> size;
+}
+
+
 void hashTableRemove(HashTable* table, const char* key) {
     unsigned long index = hash(key) % table -> capacity;
     HashNode* node = table -> buckets[index];
