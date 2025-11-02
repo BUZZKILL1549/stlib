@@ -6,10 +6,16 @@ OBJ = $(SRC:.c=.o)
 LIB = libstlib.a
 
 ifeq ($(OS),Windows_NT)
+    EXEEXT = .exe
     RM = del /Q
 else
+    EXEEXT =
     RM = rm -f
 endif
+
+EXAMPLES := $(patsubst %.c,%$(EXEEXT),$(wildcard examples/*.c))
+
+all: $(LIB)
 
 $(LIB): $(OBJ)
 	$(AR) rcs $(LIB) $(OBJ)
@@ -17,5 +23,10 @@ $(LIB): $(OBJ)
 src/%.o: src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
+examples: $(EXAMPLES)
+
+examples/%$(EXEEXT): examples/%.c $(LIB)
+	$(CC) $(CFLAGS) -o $@ $< $(LIB)
+
 clean:
-	$(RM) src\\vector.o src\\hashtable.o src\\linkedlist.o src\\stack.o src\\queue.o src\\set.o src\\bst.o libstlib.a 2>nul || true
+	$(RM) src\\*.o examples\\*$(EXEEXT) examples\\*.o libstlib.a 2>nul || true
